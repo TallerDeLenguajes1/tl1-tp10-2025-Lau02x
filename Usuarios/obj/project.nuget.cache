@@ -4,5 +4,12 @@
   "success": true,
   "projectFilePath": "D:\\Familia\\Lau Facultad\\Taller de lenguaje\\Tp10\\tl1-tp10-2025-Lau02x\\Usuarios\\Usuarios.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché D:\\Familia\\Lau Facultad\\Taller de lenguaje\\Tp10\\tl1-tp10-2025-Lau02x\\Usuarios\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
