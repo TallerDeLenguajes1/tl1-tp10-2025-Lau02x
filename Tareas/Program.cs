@@ -11,32 +11,49 @@ List<Tarea> lista_tareas = JsonSerializer.Deserialize<List<Tarea>>(responseBody)
 System.Console.WriteLine("-----Pendientes: -----\n");
 foreach (var tarea in lista_tareas)
 {
-    if (!tarea.completed)
+    if (!tarea.Completed)
     {
-        Console.WriteLine("\nTitulo:" + tarea.title + "\ncompletado:" + tarea.completed);
+        Console.WriteLine("\nTitulo:" + tarea.Title + "\ncompletado:" + tarea.Completed);
     }
 }
 
 System.Console.WriteLine("-----Completados: -----\n");
 foreach (var tarea in lista_tareas)
 {
-    if (tarea.completed)
+    if (tarea.Completed)
     {
-        Console.WriteLine("\nTitulo:" + tarea.title + "\ncompletado:" + tarea.completed);
+        Console.WriteLine("\nTitulo:" + tarea.Title + "\ncompletado:" + tarea.Completed);
     }
 }
 string jsonString = JsonSerializer.Serialize(lista_tareas);
+GuardarArchivosTexto("textos", jsonString);
 
 
+
+void GuardarArchivosTexto(string nombreArchivo,string datos)
+{
+    using (var archivo = new FileStream(nombreArchivo, FileMode.Create))
+    {
+        using (var strWriter = new StreamWriter(archivo))
+        {
+            strWriter.WriteLine("{0}", datos);
+            strWriter.Close();
+        }
+    }
+}
 
 
 
 public class Tarea
 {
-    public int userId { get; set; }
-    public int id { get; set; }
-    public string title { get; set; }
-    public bool completed { get; set; }
+    [JsonPropertyName("userId")]
+    public int UserId { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+    [JsonPropertyName("title")]
+    public string Title { get; set; }
+    [JsonPropertyName("completed")]
+    public bool Completed { get; set; }
 }
 
 
