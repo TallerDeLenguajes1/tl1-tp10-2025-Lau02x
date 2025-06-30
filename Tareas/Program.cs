@@ -18,6 +18,7 @@ foreach (var tarea in lista_tareas)
 {
     if (!tarea.Completed)
     {
+        lista_tareas_ordenada.Add(tarea);
         Console.WriteLine("\nTitulo:" + tarea.title + "\ncompletado:" + tarea.completed);
     }
 }
@@ -27,21 +28,29 @@ foreach (var tarea in lista_tareas)
 {
     if (tarea.Completed)
     {
+        lista_tareas_ordenada.Add(tarea);
         Console.WriteLine("\nTitulo:" + tarea.title + "\ncompletado:" + tarea.completed);
     }
 }
-string jsonString = JsonSerializer.Serialize(lista_tareas);
-
+string jsonString = JsonSerializer.Serialize(lista_tareas_ordenada);
+File.WriteAllText(path_archivoJson,jsonString);
 
 
 namespace Tareas
 {
-public class Tarea
-{
-    public int userId { get; set; }
-    public int id { get; set; }
-    public string title { get; set; }
-    public bool completed { get; set; }
+    public class Tarea
+    {
+     
+    [JsonPropertyName("userId")]
+    public int UserId { get; set; }
+    [JsonPropertyName("id")]
+    public int Id { get; set; }
+    [JsonPropertyName("title")]
+    public required string Title { get; set; }
+    [JsonPropertyName("completed")]
+    public bool Completed { get; set; }
+
+    }
 }
 
 
